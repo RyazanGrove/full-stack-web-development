@@ -1,0 +1,39 @@
+title 0.4: new note
+
+note over Browser: 
+User types "new Note" in the field
+and presses submit button
+end note
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note {note: new Note}
+
+note over Server: 
+Server adds a new note to the list
+Server sends a redirect to browser
+end note
+
+Server-->Browser: Code 302. Redirects to /exampleapp/notes
+
+note over Browser:
+Browser starts refreshing the page
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: Code 200. HTML-code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: Code 200. main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: Code 200. main.js
+
+note over Browser:
+Browser starts executing js-code
+that requests JSON data from server 
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: Code 200. [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+note over Browser:
+Browser executes the event handler
+that renders updated notes to display
+end note
