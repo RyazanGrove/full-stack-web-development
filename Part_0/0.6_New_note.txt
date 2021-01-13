@@ -1,0 +1,11 @@
+title 0.6: New note
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa {content: "new Note", date: "2021-01-13T12:03:19.028Z"}
+note over Server:
+Server adds the new note
+end note
+Server-->Browser: Code 201
+
+note over Browser:
+Browser renders the new list of notes
+end note
