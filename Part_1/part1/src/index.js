@@ -1,56 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Header = (props) => (
-    <h1>{props.course.name}</h1>
-)
-
-const Part = (props) => (
-    <p>
-        {props.part} {props.exercises}
-    </p>
-)
-
-const Content = (props) => {
-    return (
-        <div>
-            <Part part={props.course.parts[0].name} exercises={props.course.parts[0].exercises}></Part>
-            <Part part={props.course.parts[1].name} exercises={props.course.parts[1].exercises}></Part>
-            <Part part={props.course.parts[2].name} exercises={props.course.parts[2].exercises}></Part>
-        </div>
+const Header = (props) => {
+    return(
+        <h1>{props.title}</h1>
     )
 }
 
-const Total = (props) => (
-    <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
-)
+const Button = ({handleClick, text}) => {
+    return(
+        <button onClick={handleClick}>{text}</button>
+    )
+}
+
+const Statistics = (props) =>{
+    return(
+        <div>
+            <h1>{props.title}</h1>
+            <h3>good {props.good}</h3>
+            <h3>neutral {props.neutral}</h3>
+            <h3>bad {props.bad}</h3>
+        </div>
+    )
+}
 
 const App = () => {
-    const course = {
-        name: 'Half Stack application development',
-        parts: [
-            {
-                name: 'Fundamentals of React',
-                exercises: 10
-            },
-            {
-                name: 'Using props to pass data',
-                exercises: 7
-            },
-            {
-                name: 'State of a component',
-                exercises: 14
-            }
-        ]
-    }
+    // save clicks of each button to its own state
+    const [good, setGood] = useState(0)
+    const [neutral, setNeutral] = useState(0)
+    const [bad, setBad] = useState(0)
 
     return (
         <div>
-            <Header course={course} />
-            <Content course={course} />
-            <Total course={course} />
+            <Header title='give feedback' />
+            <Button handleClick={()=>setGood(good + 1)} text='good'/>
+            <Button handleClick={()=>setNeutral(neutral + 1)} text='neutral'/>
+            <Button handleClick={()=>setBad(bad + 1)} text='bad'/>
+            <Statistics title='statistics' good={good} neutral={neutral} bad={bad}/>
         </div>
     )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />,
+    document.getElementById('root')
+)
