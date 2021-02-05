@@ -13,13 +13,17 @@ const Button = ({handleClick, text}) => {
     )
 }
 
-const Statistics = (props) =>{
+const Statistics = ({title, good, neutral, bad}) =>{
+    const totalNumber = good + neutral + bad
     return(
         <div>
-            <h1>{props.title}</h1>
-            <h3>good {props.good}</h3>
-            <h3>neutral {props.neutral}</h3>
-            <h3>bad {props.bad}</h3>
+            <h1>{title}</h1>
+            <h3>good {good}</h3>
+            <h3>neutral {neutral}</h3>
+            <h3>bad {bad}</h3>
+            <h3>all {totalNumber}</h3>
+            <h3>average {totalNumber !==0 && (good - bad)/totalNumber}</h3>
+            <h3>positive {totalNumber !==0 && good / totalNumber} %</h3>
         </div>
     )
 }
