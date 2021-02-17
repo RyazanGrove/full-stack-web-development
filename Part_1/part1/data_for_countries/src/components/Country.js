@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Weather from "./Weather";
 
 const Country = ({isSingle, country}) => {
     const [viewIsShown ,setViewIsShown] = useState(false)
@@ -16,7 +17,7 @@ const Country = ({isSingle, country}) => {
                     <p>population {country.population}</p>
                     <h3>languages</h3>
                     <ul>{country.languages.map(language => <li key={language.name}>{language.name}</li>)}</ul>
-                    <img src={country.flag} width={200} height={200}/>
+                    <img src={country.flag} width={200} height={200} alt={'country_flag'}/>
                 </div>
             )
         }else {
@@ -35,7 +36,8 @@ const Country = ({isSingle, country}) => {
                 <p>population {country.population}</p>
                 <h3>languages</h3>
                 <ul>{country.languages.map(language => <li key={language.name}>{language.name}</li>)}</ul>
-                <img src={country.flag} width={200} height={200}/>
+                <img src={country.flag} width={200} height={200} alt={'country_flag'}/>
+                <Weather country={country}/>
             </div>
         )
     }
