@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
-import axios from "axios";
+import phonebookService from "./services/contacts"
 
 const App = () => {
     const [persons, setPersons] = useState([])
@@ -13,8 +13,8 @@ const App = () => {
     const [personsToShow, setPersonsToShow] = useState(persons)
 
     useEffect(() => {
-        axios
-            .get('http://localhost:3001/persons')
+        phonebookService
+            .getAll()
             .then(response => {
                 setPersons(response.data)
             })
@@ -49,8 +49,8 @@ const App = () => {
             window.alert(`${newName} is already added to phonebook`)
         } else {
             const newPerson = {name: newName, number: newNumber}
-            axios
-                .post('http://localhost:3001/persons/', newPerson)
+            phonebookService
+                .create(newPerson)
             setPersons(persons.concat(newPerson))
         }
     }
