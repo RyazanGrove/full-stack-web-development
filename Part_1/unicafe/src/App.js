@@ -13,6 +13,7 @@ const Button = ({handleClick, text}) => {
 }
 
 const Statistics = ({title, good, neutral, bad}) =>{
+    //single component to display statistics
     const totalNumber = good + neutral + bad
     return(
         <div>
