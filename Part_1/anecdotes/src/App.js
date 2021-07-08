@@ -24,14 +24,28 @@ const App = () => {
     setPoints(copy)
   }
 
+  let highersVoteIndex = 0;
+  let highersVote = 0;
+  for (const point in points){
+    if(points[point] > highersVote){
+      highersVote = points[point]
+      highersVoteIndex = point
+    }
+  }
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br/>
       has {points[selected]} votes
       <br/>
       <button onClick={voteForSelected}>vote</button>
       <button onClick={generateRandomValue}>next anecdote</button>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[highersVoteIndex]}
+      <br/>
+      has {highersVote} votes
     </div>
   )
 }
