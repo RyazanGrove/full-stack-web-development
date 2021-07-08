@@ -12,15 +12,25 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState({ 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 })
 
   const generateRandomValue = () => {
     setSelected(Math.round(Math.random() * 6))
+  }
+
+  const voteForSelected = () =>{
+    const copy = { ...points }
+    copy[selected] += 1
+    setPoints(copy)
   }
 
   return (
     <div>
       {anecdotes[selected]}
       <br/>
+      has {points[selected]} votes
+      <br/>
+      <button onClick={voteForSelected}>vote</button>
       <button onClick={generateRandomValue}>next anecdote</button>
     </div>
   )
