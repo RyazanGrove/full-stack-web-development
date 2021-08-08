@@ -48,6 +48,7 @@ const App = () => {
             window.alert(`${newName} is already added to phonebook`)
         } else {
             const newPerson = {name: newName, number: newNumber}
+            axios.post('http://localhost:3001/persons/', newPerson)
             setPersons(persons.concat(newPerson))
         }
     }
@@ -58,17 +59,6 @@ const App = () => {
             <Filter filterNames={filterNames}/>
             <h3>Add a new</h3>
             <PersonForm addPerson={addPerson} handleNameInputChange={handleNameInputChange} handleNumberInputChange={handleNumberInputChange}/>
-            {/*<form onSubmit={addPerson}>*/}
-            {/*    <div>*/}
-            {/*        name: <input onChange={handleNameInputChange}/>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        number: <input onChange={handleNumberInputChange}/>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <button type="submit">add</button>*/}
-            {/*    </div>*/}
-            {/*</form>*/}
             <h3>Numbers</h3>
             <Persons persons={ useFilter ? personsToShow : persons }/>
         </div>
