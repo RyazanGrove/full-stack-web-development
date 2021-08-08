@@ -55,14 +55,33 @@ const App = () => {
         }
     }
 
+    const deletePerson = (name) =>{
+        if(window.confirm('Delete ' + name + ' ?')) {
+            let newArray = []
+            persons.map((person, i) => {
+                if (person.name !== name) {
+                    newArray = newArray.concat(person)
+                } else {
+                    phonebookService
+                        .remove(person.id)
+                }
+            })
+            setPersons(newArray)
+        }
+    }
+
     return (
         <div>
             <h2>Phonebook</h2>
             <Filter filterNames={filterNames}/>
             <h3>Add a new</h3>
-            <PersonForm addPerson={addPerson} handleNameInputChange={handleNameInputChange} handleNumberInputChange={handleNumberInputChange}/>
+            <PersonForm
+                addPerson={addPerson}
+                handleNameInputChange={handleNameInputChange}
+                handleNumberInputChange={handleNumberInputChange}
+            />
             <h3>Numbers</h3>
-            <Persons persons={ useFilter ? personsToShow : persons }/>
+            <Persons persons={ useFilter ? personsToShow : persons } deleteFunction={deletePerson}/>
         </div>
     )
 }
