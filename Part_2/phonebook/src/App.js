@@ -11,6 +11,17 @@ const App = () => {
     const [ newNumber, setNumber ] = useState('')
     const [ useFilter, setUseFilter ] = useState(false)
     const [ personsToShow, setPersonsToShow ] = useState(persons)
+    const [ notificationMessage, setNotificationMessage ] = useState(null)
+
+    const notificationStyle = {
+        color: 'green',
+        background: 'lightgrey',
+        fontSize: 20,
+        borderStyle: 'solid',
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 10
+    }
 
     useEffect(() => {
         phonebookService
@@ -54,12 +65,16 @@ const App = () => {
                     .then(response => {
                         setPersons(persons.map(person => person.id !== updatedPerson.id ? person : response.data))
                     })
+                setNotificationMessage(`Number ${newNumber} updated`)
+                setTimeout(() => {setNotificationMessage(null)}, 5000)
             }
         } else {
             const newPerson = {name: newName, number: newNumber}
             phonebookService
                 .create(newPerson)
             setPersons(persons.concat(newPerson))
+            setNotificationMessage(`Added ${newName}`)
+            setTimeout(() => {setNotificationMessage(null)}, 5000)
         }
     }
 
@@ -81,6 +96,7 @@ const App = () => {
     return (
         <div>
             <h2>Phonebook</h2>
+            { notificationMessage && <div style={notificationStyle}>{notificationMessage}</div> }
             <Filter filterNames={filterNames}/>
             <h3>Add a new</h3>
             <PersonForm
