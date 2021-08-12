@@ -42,6 +42,7 @@ app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
 
+//single entry
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     const person = persons.find(person => person.id === id)
