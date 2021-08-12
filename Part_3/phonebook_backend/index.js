@@ -30,6 +30,14 @@ app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
 })
 
+app.get('/info',(request, response) => {
+    const entries = `Phonebook has info for ${persons.length} people`
+    const timestamp = new Date();
+    const timeStr = `${timestamp.toString()}`
+    const res = entries + '<br>' + timeStr
+    response.send(res)
+})
+
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
