@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:ui": "rm -rf build && cd ../../Part_2/phonebook && npm run build --prod && cp -r build ../../Part_3/phonebook_backend",
+    "build:ui": "rm -rf build && cd ../../Part_2/phonebook && npm run build --prod && cp -r build ../../Part_3/phonebook_backend && cd ../../Part_3/phonebook_backend",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git add build/* && git commit -m uibuild && npm run deploy",
     "logs:prod": "heroku logs --tail",
