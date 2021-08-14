@@ -2,9 +2,9 @@
   "name": "phonebook_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "Part_3/phonebook_backend/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node Part_3/phonebook_backend/index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
