@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node Part_3/phonebook_backend/index.js",
+    "start": "cd Part_3/phonebook_backend && node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "proxy": "http://localhost:3001",
   "author": "Mikhail",
   "license": "ISC",
   "dependencies": {
